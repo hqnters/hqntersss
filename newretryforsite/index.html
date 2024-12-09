@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Share Menu with Animation</title>
+    <style>
+    
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.container {
+  bottom: 5px;
+
+  width: 20%;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  position: relative;
+}
+
+.button {
+  position: absolute;
+  z-index: 999;
+  width: 320px;
+  height: 65px;
+  background: #222;
+  border-radius: 15px;
+  cursor: pointer;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  padding: 0 24px;
+  overflow: hidden;
+  transition: width 300ms linear;
+
+  &:before {
+    position: absolute;
+    content: "";
+    width: 20px;
+    height: 2px;
+    background: #eeff00;
+    transform: rotate(225deg);
+    transition: all 0.4s ease;
+  }
+  &:after {
+    position: absolute;
+    content: "";
+    width: 20px;
+    height: 2px;
+    background: #eeff00;
+    transform: rotate(135deg);
+    transition: all 0.4s ease;
+  }
+}
+
+.nav {
+  opacity: 1;
+  transition: all 0.5s ease-in-out;
+  background: #222;
+  width: 100%;
+  border-radius: 5px;
+  transform: translateX(50%);
+  padding: 10px;
+
+  ul {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  li {
+    opacity: 0;
+    list-style: none;
+    &:nth-child(1) {
+      transform-origin: top;
+      animation: itop 300ms 300ms  step-end;
+    }
+    &:nth-child(2) {
+      transform-origin: top;
+      animation: itop 300ms 400ms step-end;
+    }
+    &:nth-child(3) {
+      transform-origin: top;
+      animation: itop 300ms 500ms linear backwards;
+    }
+    &:nth-child(4) {
+      transform-origin: top;
+      animation: itop 300ms 600ms linear backwards;
+    }
+  }
+  a {
+    transition: all 0.5s linear;
+    text-decoration: none;
+    color: #eeff00;
+    font-size: 20px;
+    width: 52px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 10px 0 0;
+    border-radius: 15px;
+
+    &:hover {
+      color: #fff;
+      background: #1c1c1c;
+      border-radius: 15px;
+    }
+  }
+}
+
+#toggle:checked ~ label .nav {
+  display: none;
+  opacity: 0;
+  transform: translateX(0);
+}
+
+#toggle:checked ~ .button:before {
+  transform: rotate(90deg);
+}
+
+#toggle:checked ~ .button:after {
+  transform: rotate(0deg);
+}
+
+#toggle:checked ~ .button {
+  width: 70px;
+  transition: all 0.1s linear;
+}
+
+@keyframes itop {
+  0% {
+    opacity: 0;
+    transform: translateX(0px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(60px);
+  }
+}
+
+    </style>
+</head>
+<body>
+  <div class="container">
+    <input type="checkbox" id="toggle" checked />
+    <label class="button" for="toggle">
+      <nav class="nav">
+        <ul>
+          <li><a href="#0"><i class="ri-mic-line"></i></a></li>
+          <li><a href="#0"><i class="ri-message-2-line"></i></a></li>
+          <li><a href="#0"><i class="ri-file-line"></i></a></li>
+          <li><a href="#0"><i class="ri-send-plane-2-line"></i></a></li>
+        </ul>
+      </nav>
+    </label>
+  </div>
+</body>
+</html>
